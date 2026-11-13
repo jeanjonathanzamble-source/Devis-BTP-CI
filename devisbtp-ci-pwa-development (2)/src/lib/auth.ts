@@ -6,10 +6,19 @@ import { entreprises, sessions } from "@/db/schema";
 import { eq, and, gt, lt } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
+function requireEnv(name: string, fallback: string) {
+  const value = process.env[name]?.trim();
+  if (value) return value;
+  if (process.env.NODE_ENV === "production") {
+    throw new Error(`Missing required environment variable: ${name}. Configure it before launching the site.`);
+  }
+  return fallback;
+}
+
 export const SESSION_COOKIE = "dbtp_session";
 export const TOKEN_COOKIE = "dbtp_token"; // cookie lisible en JS (secours si le cookie httpOnly est bloqué)
 const SESSION_DAYS = 30;
-const SECRET = process.env.AUTH_SECRET || "devisbtp-ci-auth-signature-v1-2026";
+const SECRET = requireEnv("AUTH_SECRET", "dev-local-auth-secret-change-me");
 
 export type Compte = typeof entreprises.$inferSelect;
 
