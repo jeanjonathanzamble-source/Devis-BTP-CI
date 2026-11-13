@@ -1,0 +1,6 @@
+node_modules/
+.next/
+.netlify/*
+!.netlify/results.md
+.env*
+*.tsbuildinfo
