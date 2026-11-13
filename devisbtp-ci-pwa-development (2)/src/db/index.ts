@@ -1,29 +1,5 @@
-import { drizzle } from "drizzle-orm/node-postgres";
-import { Pool } from "pg";
+import { drizzle } from "drizzle-orm/netlify-db";
+import * as schema from "./schema";
 
-const databaseUrl = process.env.DATABASE_URL;
-
-if (!databaseUrl) {
-  throw new Error("DATABASE_URL is required");
-}
-
-const globalForDb = globalThis as typeof globalThis & {
-  __arenaNextJsPostgresqlPool?: Pool;
-};
-
-export const pool =
-  globalForDb.__arenaNextJsPostgresqlPool ??
-  new Pool({
-    connectionString: databaseUrl,
-    max: 10,
-    idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 5000, // échoue vite plutôt que de suspendre la requête
-    statement_timeout: 20000,
-    query_timeout: 20000,
-  });
-
-if (process.env.NODE_ENV !== "production") {
-  globalForDb.__arenaNextJsPostgresqlPool = pool;
-}
-
-export const db = drizzle(pool);
+// Connexion gérée automatiquement par Netlify Database (aucune URL à configurer).
+export const db = drizzle({ schema });

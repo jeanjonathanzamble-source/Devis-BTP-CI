@@ -1,0 +1,6 @@
+# L'application Next.js se trouve dans un sous-dossier : on l'indique comme base de build.
+# Ces réglages remplacent ceux de l'interface Netlify (ancienne commande « jekyll build »).
+[build]
+  base = "devisbtp-ci-pwa-development (2)"
+  command = "npm run build"
+  publish = ".next"
