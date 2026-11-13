@@ -1,14 +1,17 @@
 import { NextRequest } from "next/server";
 
-/**
- * Accès à l'espace d'administration DevisBTP CI (surchargables par variables d'environnement) :
- * - ADMIN_PIN : code PIN administrateur.
- * - FOUNDER_CODE : code fondateur/collaborateur — ouvre aussi /admin avec le niveau « fondateur »
- *   et donne un accès complet et illimité à l'application.
- */
-export const ADMIN_PIN = process.env.ADMIN_PIN || "092393";
-export const FOUNDER_CODE = process.env.FOUNDER_CODE || "09239302";
-export const ADMIN_WHATSAPP = process.env.ADMIN_WHATSAPP || "225070921922";
+function requireEnv(name: string, fallback: string) {
+  const value = process.env[name]?.trim();
+  if (value) return value;
+  if (process.env.NODE_ENV === "production") {
+    throw new Error(`Missing required environment variable: ${name}. Configure it before launching the site.`);
+  }
+  return fallback;
+}
+
+export const ADMIN_PIN = requireEnv("ADMIN_PIN", "CHANGE_ME_ADMIN_PIN");
+export const FOUNDER_CODE = requireEnv("FOUNDER_CODE", "CHANGE_ME_FOUNDER_CODE");
+export const ADMIN_WHATSAPP = requireEnv("ADMIN_WHATSAPP", "225000000000");
 
 export type NiveauAdmin = "admin" | "fondateur";
 

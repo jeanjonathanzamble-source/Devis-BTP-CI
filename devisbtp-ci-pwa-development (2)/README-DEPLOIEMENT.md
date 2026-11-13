@@ -4,7 +4,7 @@ Application SaaS PWA de devis BTP par IA pour la Côte d'Ivoire. Ce guide couvre
 
 ## 1. Ce qui est livré
 
-- **Application PWA installable** (Android / iOS / bureau) : accueil public, connexion, tableau de bord, wizard 3 étapes, éditeur, export PDF **A4 / A3**, WhatsApp, signature client, factures d'acompte, avenants, dépenses, planning IA, profil entreprise.
+- **Application PWA installable** (Android / iOS / bureau) : accueil public, connexion, tableau de bord, wizard 3 étapes, éditeur, export PDF **A4 / A3**, WhatsApp, signature client, factures d'achats et PDF de devis.
 - **Authentification multi-comptes** : mot de passe haché (scrypt), sessions signées 30 jours, données strictement isolées par compte, limitation de débit.
 - **Paiement** Wave / Orange Money avec activation immédiate par ID de transaction + contrôle a posteriori dans `/admin`.
 - **Espace administrateur** `/admin` : comptes, rôles, suspensions, activations, contrôle des paiements, synchronisation Supabase.
@@ -13,29 +13,29 @@ Application SaaS PWA de devis BTP par IA pour la Côte d'Ivoire. Ce guide couvre
 
 ## 2. Accès à conserver
 
-| Accès | Valeur par défaut |
+| Accès | Valeur avant publication |
 | --- | --- |
-| Connexion fondateur | `contact@batir-ivoire.ci` / `DevisBTP2026!` |
-| Espace admin (`/admin`) | PIN `092393` (administrateur) ou `09239302` (fondateur) |
-| Code fondateur (Mes Prix) | `09239302` — accès illimité permanent |
+| Connexion fondateur | `À personnaliser` |
+| Espace admin (`/admin`) | `À personnaliser` |
+| Code fondateur (Mes Prix) | `À personnaliser` |
 
-**À faire avant l'ouverture commerciale** : définir `ADMIN_PIN`, `FOUNDER_CODE`, `AUTH_SECRET` dans les variables d'environnement, et changer le mot de passe du compte fondateur.
+**À faire avant l'ouverture commerciale** : définir des valeurs uniques et fortes pour `ADMIN_PIN`, `FOUNDER_CODE`, `AUTH_SECRET` dans les variables d'environnement, puis changer le mot de passe du compte fondateur.
 
 ## 3. Variables d'environnement
 
 | Variable | Rôle |
 | --- | --- |
 | `DATABASE_URL` | PostgreSQL (obligatoire) |
-| `AUTH_SECRET` | Clé de signature des sessions (recommandé, sinon valeur interne) |
+| `AUTH_SECRET` | Clé de signature des sessions (obligatoire en production) |
 | `ADMIN_PIN` / `FOUNDER_CODE` | Codes d'administration et d'accès illimité |
 | `ADMIN_WHATSAPP` | Numéro de réception des confirmations de paiement |
 | `SUPABASE_URL` / `SUPABASE_KEY` | Synchronisation optionnelle Supabase |
-| `NEXT_PUBLIC_SITE_URL` | URL publique (sitemap) |
+| `NEXT_PUBLIC_SITE_URL` | URL publique (sitemap, metadata, canonicals) |
 
 ## 4. Déploiement (Vercel ou VPS)
 
 1. Pousser le dépôt, importer dans Vercel (ou `npm ci && npm run build && npm start` sur VPS avec reverse proxy HTTPS).
-2. Renseigner les variables d'environnement.
+2. Renseigner les variables d'environnement avec des valeurs fortes et non documentées.
 3. Appliquer le schéma : `npx drizzle-kit push`.
 4. Créer les tables Supabase si utilisées : `/admin` → **Copier le script SQL Supabase** → SQL Editor → Run.
 5. Vérifier `https://votre-domaine/api/health` → `{"ok":true}`.
@@ -65,5 +65,4 @@ HTTPS est indispensable (installation PWA, caméra, presse-papiers).
 - [ ] `npx drizzle-kit push` exécuté sur la base de production
 - [ ] Sauvegardes automatiques activées
 - [ ] `/api/health` et une génération de devis testés sur le domaine final
-
-
+- [ ] Valeurs de démo supprimées du dépôt et remplacées par des secrets uniques

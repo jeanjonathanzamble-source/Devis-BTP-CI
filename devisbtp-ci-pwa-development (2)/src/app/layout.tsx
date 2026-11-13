@@ -2,7 +2,10 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/+$/, "");
+
 export const metadata: Metadata = {
+  metadataBase: SITE_URL ? new URL(SITE_URL) : undefined,
   title: "DevisBTP CI — Devis BTP par IA en Côte d'Ivoire",
   description: "Créez vos Devis Quantitatifs Estimatifs (DQE) en FCFA avec les matériaux et prix du marché ivoirien. PDF propre, partage WhatsApp, paiement Wave / Orange Money.",
   manifest: "/manifest.json",
