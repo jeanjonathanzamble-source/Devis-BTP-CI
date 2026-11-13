@@ -42,3 +42,10 @@ input[type=number] { -moz-appearance: textfield; appearance: textfield; }
 }
 input, select, textarea { font-size: 16px; } /* évite le zoom iOS */
 button { touch-action: manipulation; }
+
+/* Brand mark shared by the login and workspace headers. */
+header img[src="/icons/icon-192.png"] {
+  content: url("/brand/devisbtp-ci-mark.svg");
+  object-fit: contain;
+  background: #151a25;
+}

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">DevisBTP CI</title>
+  <desc id="desc">Grue orange construisant une maison verte sur fond bleu nuit</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b202c"/>
+      <stop offset="1" stop-color="#111621"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff9f1c"/>
+      <stop offset="1" stop-color="#f08200"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10b981"/>
+      <stop offset="1" stop-color="#008f5a"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="12" width="488" height="488" rx="112" fill="url(#bg)"/>
+  <g fill="none" stroke="url(#orange)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M111 148h267M145 148v259M144 153l231 22M145 197l177-43M145 247l130-91M145 297l84-96M145 347l39-45M145 397l.5-1" stroke-width="15"/>
+    <path d="M145 153l42 45-42 49 42 50-42 50 42 49M188 153l-43 44 43 50-43 49 43 50-43 50M321 157l21 32 28-29M375 170l15 53-18 17-17-17 9-51" stroke-width="9"/>
+    <path d="M376 239v23c0 21 29 21 29 0" stroke-width="9"/>
+  </g>
+  <path d="M110 407h62v17h-80v-17h18ZM99 177h46v31H99z" fill="url(#orange)"/>
+  <path d="M215 279 325 190l111 89-15 17-19-15v126h-58v-74h-42v74h-91V281l-18 15z" fill="url(#green)"/>
+  <path d="M325 190v217h-3v-74h-42v74h-91V281l-18 15z" fill="#0c9d68" opacity=".55"/>
+  <path d="M391 224h22v-19h-22z" fill="url(#green)"/>
+</svg>
